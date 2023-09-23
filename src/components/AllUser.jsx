@@ -3,6 +3,7 @@ import { Button, Card, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, showUser } from "../features/userDetailsSlice";
 import CustomModal from "./CustomModal";
+import { Link } from "react-router-dom";
 
 const Read = () => {
     const dispatch = useDispatch();
@@ -36,11 +37,13 @@ const Read = () => {
                         <Card.Text>Gender: {user.gender}</Card.Text>
 
                         <Button onClick={() => [setShowPopup(true), setId(user.id)]}>view</Button>
-                        <Button className="mx-2 btn-warning">edit</Button>
+                        <Link to={`/edit/${user.id}`}>
+                            <Button className="mx-2 btn-warning">edit</Button>
+                        </Link>
                         <Button className="btn-danger" onClick={() => dispatch(deleteUser(user.id))}>delete</Button>
                     </Card.Body>
                 </Card>
-            )}
+            )};
            </div>
         </Container>
     );

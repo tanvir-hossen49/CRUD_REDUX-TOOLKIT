@@ -26,7 +26,7 @@ function NavBar() {
             <Link to='/all-user' className='text-decoration-none text-secondary ms-2'>All User ({allUsers.length})</Link>
           </Nav>
 
-          <Form inline onSubmit={handleFormSubmit}>
+          <Form onSubmit={handleFormSubmit}>
             <Row>
               <Col xs="auto">
                 <Form.Control
