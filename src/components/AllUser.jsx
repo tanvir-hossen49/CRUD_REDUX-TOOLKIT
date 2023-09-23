@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { showUser } from "../features/userDetailsSlice";
+import { deleteUser, showUser } from "../features/userDetailsSlice";
 import CustomModal from "./CustomModal";
 
 const Read = () => {
@@ -37,7 +37,7 @@ const Read = () => {
 
                         <Button onClick={() => [setShowPopup(true), setId(user.id)]}>view</Button>
                         <Button className="mx-2 btn-warning">edit</Button>
-                        <Button className="btn-danger">delete</Button>
+                        <Button className="btn-danger" onClick={() => dispatch(deleteUser(user.id))}>delete</Button>
                     </Card.Body>
                 </Card>
             )}
