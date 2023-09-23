@@ -6,8 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function NavBar() {
+  const allUsers = useSelector(state => state.app.users)
 
   const handleFormSubmit = (event) => {
       event.preventDefault()
@@ -21,7 +23,7 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link to='/' className='text-decoration-none text-secondary'>Create Post</Link>
-            <Link to='/all-user' className='text-decoration-none text-secondary ms-2'>All User</Link>
+            <Link to='/all-user' className='text-decoration-none text-secondary ms-2'>All User ({allUsers.length})</Link>
           </Nav>
 
           <Form inline onSubmit={handleFormSubmit}>
