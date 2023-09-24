@@ -1,19 +1,23 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { searchUser } from '../features/userDetailsSlice';
 
 function NavBar() {
+  const [searchData, setSearchDate] = useState('');
+  const dispatch = useDispatch();
+
   const allUsers = useSelector(state => state.app.users)
 
-  const handleFormSubmit = (event) => {
-      event.preventDefault()
-  }
+  useEffect(() => {
+    dispatch(searchUser(searchData))
+  },[searchData]);
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary bg-red">
@@ -26,17 +30,15 @@ function NavBar() {
             <Link to='/all-user' className='text-decoration-none text-secondary ms-2'>All User ({allUsers.length})</Link>
           </Nav>
 
-          <Form onSubmit={handleFormSubmit}>
+          <Form >
             <Row>
               <Col xs="auto">
                 <Form.Control
                   type="text"
                   placeholder="Search"
                   className="mr-sm-2"
+                  onChange={(e) => setSearchDate(e.target.value)}
                 />
-              </Col>
-              <Col xs="auto">
-                <Button type="submit">Submit</Button>
               </Col>
             </Row>
           </Form>

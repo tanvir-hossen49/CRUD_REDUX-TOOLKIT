@@ -10,7 +10,7 @@ const Read = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [id, setId] = useState('')
 
-    const {users, loading} = useSelector(state => state.app);
+    const {users, loading, searchData} = useSelector(state => state.app);
 
     useEffect(() => {
         dispatch(showUser());
@@ -29,7 +29,13 @@ const Read = () => {
             }
            <h1 className="text-center my-2">All User</h1>
            <div className="row row-cols-1 row-cols-lg-3">
-            {users && users.map(user => 
+            {users &&
+            users.filter((user) => {
+                if(user.length === 0) return user;
+                else{
+                    return user.name.toLowerCase().includes(searchData.toLowerCase())
+                }
+            }).map(user => 
                 <Card key={user.id} className="col mt-0">
                     <Card.Body>
                         <Card.Title>Name: {user.name}</Card.Title>
@@ -43,7 +49,7 @@ const Read = () => {
                         <Button className="btn-danger" onClick={() => dispatch(deleteUser(user.id))}>delete</Button>
                     </Card.Body>
                 </Card>
-            )};
+            )}
            </div>
         </Container>
     );

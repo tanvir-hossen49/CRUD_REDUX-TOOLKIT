@@ -63,7 +63,7 @@ const UpdateUser = () => {
         if(!user){
             navigate('/all-user')
         }
-    })
+    });
 
     return (
     <Container>
@@ -110,7 +110,7 @@ const UpdateUser = () => {
                {formik.errors.gender ? <div className='text-danger'>{formik.errors.gender}</div> : null}
             </Form.Group>
 
-            <Button as="input" type="submit" value="Submit" className='mt-3'/>
+            <Button as="input" type="submit" value="Update & Save" className='mt-3'/>
         </Form>
     </Container>
     );
