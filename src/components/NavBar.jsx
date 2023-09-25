@@ -17,7 +17,7 @@ function NavBar() {
 
   useEffect(() => {
     dispatch(searchUser(searchData))
-  },[searchData]);
+  }, [searchData, dispatch]);
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary bg-red">
